@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+    #container {
+        height: 1000px;
+        width: 1000px;
+        padding: 15px;
+    }
+
+    .user_input {
+        display: inline-block;
+        border-style: solid;
+        width: 400px;
+        border-width: 5px;
+        margin: 0px 5px;
+        padding: 10px;
+        vertical-align: top;
+    } 
+    .user_input h4{
+        text-align: center;
+    }
+    ul {
+        list-style-type: none;
+    }
+    </style>
+    <title>Belt Exam</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome! Sign in to make a wish!</h1>
+        <div class="user_input">
+            <h4>Register</h4>
+            <form action="/process_user" method="post">
+                <ul>
+                    <li>First Name <input type="text" name="first_name"></li>
+                    <li>Last Name <input type="text" name="last_name"></li>
+                    <li>Email <input type="text" name="email"></li>
+                    <li>Password <input type="text" name="password"></li>
+                    <li>Confirm pw <input type="text" name="cpassword"></li>
+                </ul>
+                <input class="button" type="submit" value="Register">
+            </form>
+        </div>
+        <div class="user_input">
+            <h4>Login</h4>
+            <form action="/process_login" method="post">
+                <ul>
+                    <li>Email <input type="text" name="email"></li>
+                    <li>Password <input type="text" name="password"></li>
+                </ul>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        {% with messages = get_flashed_messages() %}     
+            {% if messages %}                           
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

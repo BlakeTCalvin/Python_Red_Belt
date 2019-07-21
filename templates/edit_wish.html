@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+    #wish_edit {
+        display:inline-block;
+        padding: 10px;
+        border-style: solid;
+        border-width: 5px;
+    }
+    #container {
+        padding: 0px 15px;
+    }
+    form {
+        display: inline-block;
+    }
+    h1 {
+        display: inline-block;
+        margin: 10px 50px 10px 10px;
+    }
+    ul {
+        list-style-type: none;
+    }
+    </style>
+    <title>Belt Exam</title>
+</head>
+<body>
+    <h1>Hello {{ session['first_name'] }}! Let's edit your wish!</h1>
+    <form action="/logout">
+        <input type="submit" value="Logout">
+    </form>
+    <div id="container">
+        {% with messages = get_flashed_messages() %}     
+            {% if messages %}                           
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div id="wish_edit">
+            <form action="/process_edited_wish/{{ wish_id }}" method="post">
+                <ul>
+                    <li>I wish for <input type="text" name="wish"></li>
+                    <li>Description <input type="text" name="description"></li>
+                </ul>
+                <input type="submit" value="Edit">
+            </form>
+            <form action="/wishes">
+                <input type="submit" value="Cancel">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
